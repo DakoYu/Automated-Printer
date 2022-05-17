@@ -4,6 +4,7 @@ Python Scripts to automate printing files
 
 import os, glob, shutil
 import pandas as pd
+from time import sleep
 from datetime import date
 
 path = os.path.join('D:\\', 'Python')
@@ -13,13 +14,15 @@ path = os.path.join('D:\\', 'Python')
 year = date.today().year
 month = date.today().month
 
-dir = os.path.join('D:\\', 'Hinga', str(year), str(month))
+dir = os.path.join('D:\\', '兴雅', str(year), str(month))
 
 # Create the path
 if not os.path.exists(dir):
     os.makedirs(dir)
 
-files = glob.glob(f'{dir}/*.xlsx')
+test_dir = os.path.join('D:\\', '兴雅')
+
+files = glob.glob(f'{test_dir}/*.xlsx')
 for file in files:
     df = pd.read_excel(file).to_string()
     name = 'misc'
@@ -33,5 +36,5 @@ for file in files:
     print(move_dir)
     if not os.path.exists(move_dir):
         os.makedirs(move_dir)
-
-    # shutil.move(file, move_dir)
+    sleep(5)
+    shutil.move(file, move_dir)
